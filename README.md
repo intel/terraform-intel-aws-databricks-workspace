@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <img src="./images/logo-classicblue-800px.png" alt="Intel Logo" width="250"/>
 </p>
@@ -8,25 +6,78 @@
 
 © Copyright 2022, Intel Corporation
 
-## Module name
+## AWS Databricks
+The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code
 
 ## Usage
 
-See examples folder for code ./examples/intel-optimized-postgresql-server/main.tf
+See examples folder for code ./examples/databricks-workspace/main.tf
+**Usage Considerations**
+<p>
+Databricks Workspace Setup requires three configurations components:
 
+* **Crendentials Configuration**:
+  * Default for **var.create_aws_account_role = false**. This means the user must to provide input for:
+    * var.aws_cross_account_role_name
+    * var.aws_cross_account_arn (Follow this steps to create cross account IAM role in [AWS](https://docs.databricks.com/administration-guide/account-api/iam-role.html))
+  * If **var.create_aws_account_role = true**. This means the module will create Credentials Configurations.
+* **Storage Configuration**:
+  * Default for **var.create_bucket = false**. This means the user must to provide input for:
+    * var.bucket_name (Follow this steps to create storage bucket in [AWS](https://docs.databricks.com/administration-guide/account-settings-e2/storage.html))
+  * If **var.create_bucket = true**. This means the module will create Storage Configurations.
+* **Network Configuration**:
+  * By default the user must provide these three variables to create Network config:
+    * var.vpc_id
+    * var.subnet_ids
+    * var.security_group_ids
+  * More information on creating VPC and subnets in [Databricks on AWS](https://docs.databricks.com/administration-guide/account-settings-e2/networks.html)
+
+</p>
 Example of main.tf
 
 ```hcl
-# Example of how to pass variable for database password:
-# terraform apply -var="db_password=..."
+# Example of how to pass variable for databricks account password:
+# terraform apply -var="dbx_account_password=..."
 # Environment variables can also be used https://www.terraform.io/language/values/variables#environment-variables
 
 # Provision Intel Cloud Optimization Module
 module "module-example" {
-  source = "github.com/intel/module-name"
+  source = "intel/module-name/intel"
 }
 
 ```
+**Usage Considerations**
+<p>
+Databricks Workspace Setup requires three configurations components:
+
+* **Crendentials Configuration**:
+  * Default for **var.create_aws_account_role = false**. This means the user must to provide input for:
+    * var.aws_cross_account_role_name
+    * var.aws_cross_account_arn (Follow this steps to create cross account IAM role in [AWS](https://docs.databricks.com/administration-guide/account-api/iam-role.html))
+  * If **var.create_aws_account_role = true**. This means the module will create Credentials Configurations.
+* **Storage Configuration**:
+  * Default for **var.create_bucket = false**. This means the user must to provide input for:
+    * var.bucket_name (Follow this steps to create storage bucket in [AWS](https://docs.databricks.com/administration-guide/account-settings-e2/storage.html))
+  * If **var.create_bucket = true**. This means the module will create Storage Configurations.
+* **Network Configuration**:
+  * By default the user must provide these three variables to create Network config:
+    * var.vpc_id
+    * var.subnet_ids
+    * var.security_group_ids
+  * More information on creating VPC and subnets in [Databricks on AWS](https://docs.databricks.com/administration-guide/account-settings-e2/networks.html)
+
+</p>
+
+Required Variables 
+```hcl
+var.dbx_account_username
+var.dbx_account_password
+var.dbx_account_id
+var.vpc_id
+var.vpc_subnet_ids
+var.security_group_ids
+```
+
 
 Run Terraform
 
@@ -34,9 +85,10 @@ Run Terraform
 terraform init  
 terraform plan
 terraform apply
-
 ```
 
 Note that this example may create resources. Run `terraform destroy` when you don't need these resources anymore.
 
-## Considerations  
+## Considerations 
+
+More Information regarding deploying Databricks Workspace [Databricks](https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication)

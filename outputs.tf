@@ -1,18 +1,62 @@
 // Capture the Databricks workspace's URL.
-output "databricks_host" {
+output "dbx_host" {
+  description = "URL of the Databricks workspace"
   value = databricks_mws_workspaces.ws.workspace_url
-  description = "value"
+
 }
 
-// Export the Databricks personal access token's value, for integration tests to run on.
-# output "databricks_token" {
-#   value     = databricks_token.pat.token_value
-#   description = "value"
-#   sensitive = true
-# }
+output "dbx_id" {
+  description = "ID of the Databricks workspace"
+  value = databricks_mws_workspaces.ws.id
+}
 
-output "databricks_assume_role_policy" {
-  value = data.databricks_aws_assume_role_policy.rp.json
-  description = "Assume role policy for the Databricks deployment."
+output "dbx_account_id" {
+  description = "Account ID for the Databricks Account"
+  value = databricks_mws_workspaces.ws.account_id
+  sensitive = true
+}
+
+### Credentials #####
+output "dbx_role_arn" {
+  description = "ARN that will be used for databricks cross account IAM role."
+  value = databricks_mws_credentials.cr.role_arn
+}
+
+output "dbx_credentials_name" {
+  description = "Name that will be associated with the credential configuration in Databricks."
+  value = databricks_mws_credentials.cr.credentials_name
+}
+
+### Network #####
+output "dbx_network_name" {
+  description = "Name that will be associated with the network configuration in Databricks."
+  value = databricks_mws_networks.nw.network_name
+
+}
+output "dbx_vpc_id" {
+  description = "ID for the VPC that Databricks will be attaching to."
+  value = databricks_mws_networks.nw.vpc_id
+}
+
+output "dbx_vpc_subnet_ids" {
+  description = "List of subnet IDs that will be utilized by Databricks."
+  value = databricks_mws_networks.nw.subnet_ids
+}
+
+output "dbx_security_group_ids" {
+  description = "List of security group IDs that will be utilized by Databricks."
+  value = databricks_mws_networks.nw.security_group_ids
+}
+
+### Storage #####
+
+output "dbx_bucket_name" {
+  description = "Name of the existing S3 bucket that Databricks will consume."
+  value = databricks_mws_storage_configurations.sc.bucket_name
+}
+
+output "dbx_storage_configuration_name" {
+  description = "Name of the existing S3 bucket that Databricks will consume."
+  value = databricks_mws_storage_configurations.sc.storage_configuration_name
 }
 

@@ -6,17 +6,6 @@
 ####    Required    ####
 ########################
 
-variable "aws_cross_account_arn" {
-  type = string
-  description = "ARN that will be used for databricks cross account IAM role."
-  default = ""
-}
-
-variable "vpc_id" {
-  type = string
-  description = "ID for the VPC that Databricks will be attaching to."
-}
-
 variable "dbx_account_username" {
   type        = string
   description = "Account Login Username for the Databricks Account"
@@ -29,7 +18,12 @@ variable "dbx_account_password" {
 
 variable "dbx_account_id" {
   type = string
-  description = "Account Login Username for the Databricks Account"
+  description = "Account ID for the Databricks Account"
+}
+
+variable "vpc_id" {
+  type = string
+  description = "ID for the VPC that Databricks will be attaching to."
 }
 
 variable "vpc_subnet_ids" {
@@ -45,6 +39,12 @@ variable "security_group_ids" {
 ########################  
 ####     Other      ####
 ########################
+variable "aws_cross_account_arn" {
+  type = string
+  description = "ARN that will be used for databricks cross account IAM role."
+  default = ""
+}
+
 // See https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
 variable "aws_iam_policy_attachment_name" {
   type = string
@@ -61,7 +61,7 @@ variable "tags" {
 variable "region" {
   type = string
   description = "AWS Region that will be used as a part of the deployment"
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "prefix" {
