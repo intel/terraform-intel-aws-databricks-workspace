@@ -12,6 +12,7 @@ The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. I
 ## Usage
 
 See examples folder for code ./examples/databricks-workspace/main.tf
+
 **Usage Considerations**
 <p>
 Databricks Workspace Setup requires three configurations components:
@@ -46,27 +47,7 @@ module "module-example" {
 }
 
 ```
-**Usage Considerations**
-<p>
-Databricks Workspace Setup requires three configurations components:
 
-* **Crendentials Configuration**:
-  * Default for **var.create_aws_account_role = false**. This means the user must to provide input for:
-    * var.aws_cross_account_role_name
-    * var.aws_cross_account_arn (Follow this steps to create cross account IAM role in [AWS](https://docs.databricks.com/administration-guide/account-api/iam-role.html))
-  * If **var.create_aws_account_role = true**. This means the module will create Credentials Configurations.
-* **Storage Configuration**:
-  * Default for **var.create_bucket = false**. This means the user must to provide input for:
-    * var.bucket_name (Follow this steps to create storage bucket in [AWS](https://docs.databricks.com/administration-guide/account-settings-e2/storage.html))
-  * If **var.create_bucket = true**. This means the module will create Storage Configurations.
-* **Network Configuration**:
-  * By default the user must provide these three variables to create Network config:
-    * var.vpc_id
-    * var.subnet_ids
-    * var.security_group_ids
-  * More information on creating VPC and subnets in [Databricks on AWS](https://docs.databricks.com/administration-guide/account-settings-e2/networks.html)
-
-</p>
 
 Required Variables 
 ```hcl
