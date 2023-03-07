@@ -78,21 +78,10 @@ module "databricks_setup" {
   dbx_account_username = var.dbx_account_username
   vpc_subnet_ids = ["subnet-0b22c8e6b9f2e956c" , "subnet-0c53fc70a0e3ed9f0"]
   security_group_ids = ["sg-0c26302989e5391b5"]
-  create_bucket = true
-  create_aws_account_role = true
+  bucket_name = "dbx-root-storage-bucket"
+  aws_cross_account_role_name = "dbx-cross-account-role"
+  aws_cross_account_arn = "arn:aws:iam::499974397304:role/dbx-cross-account-role"
 }
-
-
-module "databricks_workspace" {
-  source = "../../created_worksapce"
-  depends_on = [
-    module.databricks_setup
-  ]
-  providers = {
-    databricks = databricks.workspace
-  }
-}
-
 
 ```
 

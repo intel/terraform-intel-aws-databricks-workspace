@@ -2,6 +2,7 @@
 output "dbx_host" {
   description = "URL of the Databricks workspace"
   value = module.databricks_setup.dbx_host
+
 }
 
 output "dbx_id" {
@@ -58,4 +59,3 @@ output "dbx_storage_configuration_name" {
   description = "Name of the existing S3 bucket that Databricks will consume."
   value = module.databricks_setup.dbx_storage_configuration_name
 }
-
