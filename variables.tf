@@ -8,7 +8,7 @@
 
 variable "dbx_account_username" {
   type        = string
-  description = "Account Login Username for the Databricks Account"
+  description = "Account Login Username/Email for the Databricks Account"
 }
 
 variable "dbx_account_password" {
@@ -18,7 +18,7 @@ variable "dbx_account_password" {
 
 variable "dbx_account_id" {
   type = string
-  description = "Account ID for the Databricks Account"
+  description = "Account ID Number for the Databricks Account"
 }
 
 variable "vpc_id" {
@@ -45,7 +45,6 @@ variable "aws_cross_account_arn" {
   default = ""
 }
 
-// See https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
 variable "aws_iam_policy_attachment_name" {
   type = string
   description = "Name that will be used when attaching the policy to the arn that is created or provided"
@@ -94,8 +93,6 @@ variable "dbx_storage_name" {
   default = "dbx_module_storage"
 }
 
-# create_bucket = true, var.bucket_name
-# create_bucket = false, var.bucket_name
 variable "create_bucket" {
   type = bool
   description = "Boolean that when true will create a root S3 bucket for Databricks to consume."

@@ -13,7 +13,7 @@ module "databricks_workspace" {
 }
 
 module "databricks_cluster" {
-  source = "../../created_workspace"
+  source = "../../cluster"
   providers = {
     databricks = databricks.workspace
   }

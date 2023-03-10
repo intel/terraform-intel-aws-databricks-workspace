@@ -9,7 +9,13 @@
 ## AWS Databricks
 
 The module can deploy an Intel Optimized AWS Databricks Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
-This module requires you to have Databricks workspace setup. As it will prompt for the URL of the DBX workspace
+This module requires you to have Databricks workspace setup. As it will prompt for the URL of the DBX workspace.
+
+**Learn more about optimizations :**
+
+[Databricks Photon using AWS i4i](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
+
+[Accelerating Databricks Runtime for Machine Learning](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273)
 
 ## Usage
 
@@ -25,12 +31,12 @@ variable "dbx_account_password" {
 
 variable "dbx_account_username" {
   type        = string
-  description = "Account Login Username for the Databricks Account"
+  description = "Account Login Username/Email for the Databricks Account"
 }
 
 variable "dbx_account_id" {
   type = string
-  description = "Account Login Username for the Databricks Account"
+  description = "Account ID Number for the Databricks Account"
 }
 
 variable "dbx_host" {
@@ -44,7 +50,7 @@ main.tf
 ```hcl
 # This example creates databricks cluster on an existing dbx workspace. URL for the dbx workspace must be provided when prompted
 module "databricks_workspace" {
-  source = "../../created_workspace"
+  source = "../../cluster"
   providers = {
     databricks = databricks.workspace
   }

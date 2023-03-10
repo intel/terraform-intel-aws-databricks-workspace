@@ -5,8 +5,7 @@
 # Storage Optimized: i4i.large, i4i.xlarge, i4i.2xlarge, i4i.4xlarge, i4i.8xlarge, i4i.16xlarge, i4i.32xlarge
 #See more:
 #https://www.databricks.com/product/pricing
-#https://aws.amazon.com/ec2/instance-types/?trk=36c6da98-7b20-48fa-8225-4784bced9843&sc_channel=ps&s_kwcid=AL!4422!3!536392622533!e!!g!!aws%20ec2%20instance%20pricing&ef_id=CjwKCAiAxvGfBhB-EiwAMPakquCwWM2kyUJf9VQXCzpbGLq5sTsVTgHMMjSvmOb7XyaND-3R_M0iARoC89wQAvD_BwE:G:s&s_kwcid=AL!4422!3!536392622533!e!!g!!aws%20ec2%20instance%20pricing
-
+#https://aws.amazon.com/ec2/instance-types/i4i/
 variable "dbx_node_type_id" {
   description = "The type of the AWS Compute Machine that are supported by databricks."
   type = string
@@ -28,14 +27,15 @@ variable "dbx_spark_config" {
 }
 
 # Getting the best possible performance out of an application always presents challenges. This fact is especially true when developing machine learning (ML) and artificial intelligence (AI) applications. Over the years, Intel has worked closely with the ecosystem to optimize a broad range of frameworks and libraries for better performance.
-# This brief discusses the performance benefits derived from incorporating Intel-optimized ML libraries into Databricks Runtime for Machine Learning on 2nd Generation Intel® Xeon® Platinum processors. The paper focuses on two of the most popular frameworks used in ML and deep learning (DL): scikit-learn and TensorFlow. */
+# This brief discusses the performance benefits derived from incorporating Intel-optimized ML libraries into Databricks Runtime for Machine Learning on 3rd Generation Intel® Xeon® Platinum processors. The paper focuses on two of the most popular frameworks used in ML and deep learning (DL): scikit-learn and TensorFlow. */
+# https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273
 variable "dbfs_source" {
   description = "Path of the Intel ML Optimized init_scripts"
   type = string
   default = "../../scripts/init_intel_optimized_ml.sh"
 }
 
-
+#https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake
 variable "dbx_runtime_engine" {
   description = " The type of runtime engine to use. If not specified, the runtime engine type is inferred based on the spark_version value. Allowed values include: PHOTON, STANDARD."
   validation {

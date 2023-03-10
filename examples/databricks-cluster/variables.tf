@@ -16,11 +16,11 @@ variable "dbx_account_password" {
 
 variable "dbx_account_username" {
   type        = string
-  description = "Account Login Username for the Databricks Account"
+  description = "Account Login Username/Email for the Databricks Account"
 }
 
 variable "dbx_account_id" {
   type = string
-  description = "Account Login Username for the Databricks Account"
+  description = "Account ID Number for the Databricks Account"
 }
 
