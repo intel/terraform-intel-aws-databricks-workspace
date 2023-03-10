@@ -13,6 +13,7 @@ variable "dbx_node_type_id" {
   default = "i4i.2xlarge"
 }
 
+#Intel Optimized Tunable Spark Config parameters
 variable "dbx_spark_config" {
   description = "Key - Value pair for Intel Optimizations for Spark configuration"
   type = map(string)
@@ -26,10 +27,23 @@ variable "dbx_spark_config" {
   }
 }
 
-variable "dbx_global_init_script_enabled" {
-  description = "Specifies if the global init script is enabled for execution, or not"
-  type = bool
-  default = true
+# Getting the best possible performance out of an application always presents challenges. This fact is especially true when developing machine learning (ML) and artificial intelligence (AI) applications. Over the years, Intel has worked closely with the ecosystem to optimize a broad range of frameworks and libraries for better performance.
+# This brief discusses the performance benefits derived from incorporating Intel-optimized ML libraries into Databricks Runtime for Machine Learning on 2nd Generation Intel® Xeon® Platinum processors. The paper focuses on two of the most popular frameworks used in ML and deep learning (DL): scikit-learn and TensorFlow. */
+variable "dbfs_source" {
+  description = "Path of the Intel ML Optimized init_scripts"
+  type = string
+  default = "../../scripts/init_intel_optimized_ml.sh"
+}
+
+
+variable "dbx_runtime_engine" {
+  description = " The type of runtime engine to use. If not specified, the runtime engine type is inferred based on the spark_version value. Allowed values include: PHOTON, STANDARD."
+  validation {
+    condition = contains(["PHOTON" , "STANDARD"], var.dbx_runtime_engine)
+    error_message = "The dbx_runtime_engine must be \"PHOTON\" or \"STANDARD\"."
+  }
+  type = string
+  default = "PHOTON"
 }
 ########################
 ####    Required    ####
@@ -60,22 +74,11 @@ variable "dbx_auto_terminate_min" {
   default = 120
 }
 
-variable "dbx_runtime_engine" {
-  description = " The type of runtime engine to use. If not specified, the runtime engine type is inferred based on the spark_version value. Allowed values include: PHOTON, STANDARD."
-  validation {
-    condition = contains(["PHOTON" , "STANDARD"], var.dbx_runtime_engine)
-    error_message = "The dbx_runtime_engine must be \"PHOTON\" or \"STANDARD\"."
-  }
-  type = string
-  default = "PHOTON"
-}
-
 variable "tags" {
   description = "Tags"
   type = map(string)
   default = {
-    "owner" = "shreejan.mistry@intel.com"   //TODO remove this tags
-    "duration" = "4"
+    "key" = "value"
   }
 }
 

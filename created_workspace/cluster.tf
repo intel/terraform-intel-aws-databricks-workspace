@@ -8,10 +8,9 @@ data "databricks_spark_version" "latest_lts" {
   long_term_support = true
 }
 
-resource "databricks_global_init_script" "init1" {
-  source = "../../scripts/init_intel_optimized_ml.sh"
-  name   = "Intel Optimized ML library init script"
-  enabled =  var.dbx_global_init_script_enabled
+resource "databricks_dbfs_file" "dbfs" {
+  source = var.dbfs_source
+  path   = "/FileStore/init_scripts"
 }
 
 resource "databricks_cluster" "dbx_cluster" {
@@ -23,5 +22,11 @@ resource "databricks_cluster" "dbx_cluster" {
   num_workers             = var.dbx_num_workers
   spark_conf              = var.dbx_spark_config
   custom_tags             = var.tags
+
+  init_scripts {
+    dbfs {
+      destination = databricks_dbfs_file.dbfs.dbfs_path
+    }
+  }
 }
 

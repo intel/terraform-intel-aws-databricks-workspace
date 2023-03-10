@@ -8,7 +8,7 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 ## Usage
 
@@ -70,7 +70,11 @@ variable "security_group_ids" {
 ```
 main.tf
 ```hcl
-module "databricks_setup" {
+#This example creates an databricks workspace with the default Storage and Network Configurations. 
+#This example uses create_aws_account_role = true for Credentials Configurations
+#For more information on usage configuration, use the README.md
+
+module "databricks_workspace" {
   source = "../../"
   vpc_id = "vpc-047043965cbe4967b"
   dbx_account_id = var.dbx_account_id
@@ -83,7 +87,6 @@ module "databricks_setup" {
   #Credentials Config
   create_aws_account_role = true
 }
-
 ```
 
 

@@ -2,7 +2,7 @@
 #This example uses create_bucket = true for Storage Configurations
 #For more information on usage configuration, use the README.md
 
-module "databricks_setup" {
+module "databricks_workspace" {
   source = "../../"
   vpc_id = "vpc-047043965cbe4967b"
   dbx_account_id = var.dbx_account_id

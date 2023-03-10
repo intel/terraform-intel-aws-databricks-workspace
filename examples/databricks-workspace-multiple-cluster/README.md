@@ -8,7 +8,7 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace and Clusters. Instance Selection and Intel Optimizations have been defaulted in the code.
 
 ## Usage
 
@@ -70,7 +70,8 @@ variable "security_group_ids" {
 ```
 main.tf
 ```hcl
-module "databricks_setup" {
+#This example creates an databricks workspace with the default Credentials, Storage and Network Configurations and Multiple Databricks Cluster with Intel Optimizations. For more information on usage configuration, use the README.md
+module "databricks_workspace" {
   source = "../../"
   vpc_id = "vpc-047043965cbe4967b"
   dbx_account_id = var.dbx_account_id
@@ -83,6 +84,26 @@ module "databricks_setup" {
   aws_cross_account_arn = "arn:aws:iam::499974397304:role/dbx-cross-account-role"
 }
 
+module "databricks_cluster_1" {
+  source = "../../created_workspace"
+  providers = {
+    databricks = databricks.workspace
+  }
+  depends_on = [
+    module.databricks_workspace
+  ]
+}
+
+module "databricks_cluster_2" {
+  source = "../../created_workspace"
+  providers = {
+    databricks = databricks.workspace
+  }
+  depends_on = [
+    module.databricks_workspace
+  ]
+  dbx_cluster_name = "dbx_optimized_cluster_2"
+}
 ```
 
 
@@ -98,3 +119,5 @@ terraform apply
 ```
 ## Considerations
 More Information regarding deploying Databricks Workspace [Databricks](https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication)
+
+Make sure that module name that setups the databricks workspace in main.tf matches the "host = module.<Module_Name>.dbx_host" in the databricks.workspace provider in provider.tf

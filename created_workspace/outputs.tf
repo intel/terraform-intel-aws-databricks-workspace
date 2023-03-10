@@ -4,11 +4,6 @@ output "dbx_pat" {
   sensitive = false
 }
 
-output "dbx_global_init_script" {
-  description = "Intel Optimized ML Library Init Script"
-  value = databricks_global_init_script.init1.content_base64
-}
-
 output "dbx_cluster_name" {
   description = "Name of the databricks cluster"
   value = databricks_cluster.dbx_cluster.cluster_name

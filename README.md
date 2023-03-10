@@ -70,6 +70,11 @@ terraform apply
 
 Note that this example may create resources. Run `terraform destroy` when you don't need these resources anymore.
 
+
 ## Considerations 
 
 More Information regarding deploying Databricks Workspace [Databricks](https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication)
+
+**NOTE**: You cannot create multiple databricks workspaces with the same storage, credentials or network configurations.
+
+**NOTE**: The URL of the created databricks workspaces will be outputed on the finish of terraform apply run. Look for **dbx_host** in outputs for the URL

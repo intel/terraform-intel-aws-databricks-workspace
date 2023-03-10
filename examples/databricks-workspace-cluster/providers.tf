@@ -12,7 +12,7 @@ provider "databricks" {
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
 provider "databricks" {
   alias    = "workspace"
-  host     = module.databricks_setup.dbx_host
+  host     = module.databricks_workspace.dbx_host
   username = var.dbx_account_username
   password = var.dbx_account_password
 }

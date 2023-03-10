@@ -1,4 +1,4 @@
-#This example creates an databricks workspace with the default Credentials, Storage and Network Configurations. For more information on usage configuration, use the README.md
+#This example creates an databricks workspace with the default Credentials, Storage and Network Configurations and Databricks Cluster with Intel Optimizations. For more information on usage configuration, use the README.md
 module "databricks_workspace" {
   source = "../../"
   vpc_id = "vpc-047043965cbe4967b"
@@ -10,4 +10,20 @@ module "databricks_workspace" {
   bucket_name = "dbx-root-storage-bucket"
   aws_cross_account_role_name = "dbx-cross-account-role"
   aws_cross_account_arn = "arn:aws:iam::499974397304:role/dbx-cross-account-role"
+}
+
+module "databricks_cluster" {
+  source = "../../created_workspace"
+  providers = {
+    databricks = databricks.workspace
+  }
+  depends_on = [
+    module.databricks_workspace
+  ]
+
+  #REMOVE THIS
+  tags = {
+    "owner" = "shreejan.mistry@intel.com"
+    "duration" = "4"
+  }
 }

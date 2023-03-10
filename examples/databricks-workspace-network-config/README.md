@@ -8,7 +8,7 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 ## Usage
 
@@ -70,20 +70,46 @@ variable "security_group_ids" {
 ```
 main.tf
 ```hcl
-module "databricks_setup" {
+#This example creates an databricks workspace with the default Credentials and Storage Configurations. 
+#This example creates VPC and VPC endpoints for the network config to use for the setup of the databricks workspace. 
+#For more information on usage configuration, use the README.md
+locals {
+  prefix = "Test-Network"
+}
+
+data "aws_availability_zones" "available" {}
+
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "3.2.0"
+  ....  
+  ....
+
+}
+
+module "vpc_endpoints" {
+  source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
+  version = "3.2.0"
+  ....
+  ....
+  
+}
+
+module "databricks_workspace" {
   source = "../../"
-  vpc_id = "vpc-047043965cbe4967b"
   dbx_account_id = var.dbx_account_id
   dbx_account_password = var.dbx_account_password
   dbx_account_username = var.dbx_account_username
-  vpc_subnet_ids = ["subnet-0b22c8e6b9f2e956c" , "subnet-0c53fc70a0e3ed9f0"]
-  security_group_ids = ["sg-0c26302989e5391b5"]
   bucket_name = "dbx-root-storage-bucket"
+  aws_cross_account_role_name = "dbx-cross-account-role"
+  aws_cross_account_arn = "arn:aws:iam::499974397304:role/dbx-cross-account-role"
+  
+  #Network Config
+  vpc_id = module.vpc.vpc_id
+  vpc_subnet_ids = module.vpc.private_subnets
+  security_group_ids = [module.vpc.default_security_group_id]  
 
-  #Credentials Config
-  create_aws_account_role = true
 }
-
 ```
 
 
