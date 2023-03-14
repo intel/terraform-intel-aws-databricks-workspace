@@ -36,7 +36,7 @@ Allowed Type: PHOTON
 
 Description: databricks_cluster
 
-Resource type: aws_db_instance
+Resource type: databricks_cluster
 
 Parameter: spark_conf
 
