@@ -32,7 +32,7 @@ variable "dbx_spark_config" {
 variable "dbfs_source" {
   description = "Path of the Intel ML Optimized init_scripts"
   type = string
-  default = "../../scripts/init_intel_optimized_ml.sh"
+  default = "../../scripts/init_intel_optimized_ml_ex.sh"
 }
 
 #https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake

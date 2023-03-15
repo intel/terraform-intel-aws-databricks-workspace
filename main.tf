@@ -12,15 +12,6 @@ data "databricks_aws_assume_role_policy" "rp" {
 
 data "databricks_aws_crossaccount_policy" "cap" {}
 
-
-# // Create the required IAM role inline policy in your AWS account.
-# // See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy
-# resource "aws_iam_role_policy" "irp" {
-#   name   = var.prefix != null ? "${var.prefix}-${var.aws_iam_policy_name}" : "${var.aws_iam_policy_name}"
-#   role   = var.create_aws_account_role ? aws_iam_role.ir.id : var.aws_cross_account_role_name
-#   policy = data.databricks_aws_crossaccount_policy.cap.json
-# }
-
 resource "aws_iam_policy" "iap" {
   name   = var.prefix != null ? "${var.prefix}-${var.aws_iam_policy_name}" : "${var.aws_iam_policy_name}"
   policy = data.databricks_aws_crossaccount_policy.cap.json
@@ -42,7 +33,7 @@ resource "aws_iam_policy_attachment" "ipa" {
 // See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
 resource "aws_iam_role" "ir" {
   count              = var.create_aws_account_role ? 1 : 0
-  name               = var.prefix != null ? "${var.prefix}-${var.aws_cross_account_role_name}" : "${var.aws_cross_account_role_name}"
+  name               = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.aws_cross_account_role_name}" : "${var.aws_cross_account_role_name}"
   assume_role_policy = data.databricks_aws_assume_role_policy.rp.json
   tags               = var.tags
 }

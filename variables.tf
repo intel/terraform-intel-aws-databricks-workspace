@@ -96,7 +96,7 @@ variable "dbx_storage_name" {
 variable "create_bucket" {
   type = bool
   description = "Boolean that when true will create a root S3 bucket for Databricks to consume."
-  default = false
+  default = true
 }
 
 variable "bucket_name" {
@@ -126,7 +126,7 @@ variable "s3_bucket_versioning" {
 variable "create_aws_account_role" {
   type = bool
   description = "Flag that determines if a cross account role will be created in the AWS account provided."
-  default = false
+  default = true
 }
 
 variable "aws_cross_account_role_name" {

@@ -26,6 +26,11 @@ output "dbx_credentials_name" {
   value = module.databricks_workspace.dbx_credentials_name
 }
 
+output "dbx_create_role" {
+  description = "Flag to create AWS IAM Role or not"
+  value = module.databricks_workspace.dbx_create_role
+}
+
 ### Network #####
 output "dbx_network_name" {
   description = "Name that will be associated with the network configuration in Databricks."
@@ -59,6 +64,10 @@ output "dbx_storage_configuration_name" {
   value = module.databricks_workspace.dbx_storage_configuration_name
 }
 
+output "dbx_create_bucket" {
+  description = "Flag to create AWS S3 bucket or not"
+  value = module.databricks_workspace.dbx_create_bucket
+}
 ### Databricks Cluster #####
 output "dbx_cluster_name" {
   description = "Name of the databricks cluster"

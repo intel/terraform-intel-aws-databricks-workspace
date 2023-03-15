@@ -27,6 +27,11 @@ output "dbx_credentials_name" {
   value = databricks_mws_credentials.cr.credentials_name
 }
 
+output "dbx_create_role" {
+  description = "Flag to create AWS IAM Role or not."
+  value = var.create_bucket
+}
+
 ### Network #####
 output "dbx_network_name" {
   description = "Name that will be associated with the network configuration in Databricks."
@@ -58,5 +63,10 @@ output "dbx_bucket_name" {
 output "dbx_storage_configuration_name" {
   description = "Name of the existing S3 bucket that Databricks will consume."
   value = databricks_mws_storage_configurations.sc.storage_configuration_name
+}
+
+output "dbx_create_bucket" {
+  description = "Flag to create AWS S3 bucket or not."
+  value = var.create_bucket
 }
 

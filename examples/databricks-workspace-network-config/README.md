@@ -17,27 +17,25 @@ The module can deploy an Intel Optimized AWS Databricks Workspace.
 [Accelerating Databricks Runtime for Machine Learning](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273)
 ## Usage
 
+See examples folder for code ./examples/databricks-workspace/main.tf
+
+All the examples in example folder shows how to create a databricks workspace using this module. Additionally, some of the examples display how to create a databricks cluster with the workspace using this module.
+
 **Usage Considerations**
+
 <p>
-Databricks Workspace Setup requires three configurations components:
 
-* **Crendentials Configuration**:
-  * Default for **var.create_aws_account_role = false**. This means the user must to provide input for:
-    * var.aws_cross_account_role_name
-    * var.aws_cross_account_arn (Follow this steps to create cross account IAM role in [AWS](https://docs.databricks.com/administration-guide/account-api/iam-role.html))
-  * If **var.create_aws_account_role = true**. This means the module will create Credentials Configurations.
-* **Storage Configuration**:
-  * Default for **var.create_bucket = false**. This means the user must to provide input for:
-    * var.bucket_name (Follow this steps to create storage bucket in [AWS](https://docs.databricks.com/administration-guide/account-settings-e2/storage.html))
-  * If **var.create_bucket = true**. This means the module will create Storage Configurations.
-* **Network Configuration**:
-  * By default the user must provide these three variables to create Network config:
-    * var.vpc_id
-    * var.subnet_ids
-    * var.security_group_ids
-  * More information on creating VPC and subnets in [Databricks on AWS](https://docs.databricks.com/administration-guide/account-settings-e2/networks.html)
+* **Step 1 : Prerequisites:**
 
-</p>
+  1.  [Create a databricks account.](https://www.databricks.com/try-databricks?itm_data=Homepage-HeroCTA-Trial#account). Remember the **email** and **password** used to create an Databricks account.
+  2.  After logging in the account, in the top right corner you can find your **Databricks Account ID**<br/><br/>
+* **Step 2: Create Network Config:** User need to satisfy the Databircks Network Requirements
+
+  1.  Follow the steps here to [create VPC with subnets and security groups](https://docs.databricks.com/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#create-a-vpc) in your AWS Console.<br/><br/>
+
+  If you already have pre-existing VPC with subnet and security group that satisfy [Databricks VPC Requirement](https://docs.databricks.com/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#vpc-requirements-1), you can also use that network config. 
+ 
+  See examples/databricks-workspace-network-config to see how you can create your VPC with subnets and security group using terraform and then use that VPC for the creation of the databricks workspace.<br/><br/>
 
 **See examples folder for complete examples.**
 
@@ -105,10 +103,7 @@ module "databricks_workspace" {
   dbx_account_id = var.dbx_account_id
   dbx_account_password = var.dbx_account_password
   dbx_account_username = var.dbx_account_username
-  bucket_name = "dbx-root-storage-bucket"
-  aws_cross_account_role_name = "dbx-cross-account-role"
-  aws_cross_account_arn = "arn:aws:iam::499974397304:role/dbx-cross-account-role"
-  
+
   #Network Config
   vpc_id = module.vpc.vpc_id
   vpc_subnet_ids = module.vpc.private_subnets
@@ -130,3 +125,9 @@ terraform apply
 ```
 ## Considerations
 More Information regarding deploying Databricks Workspace [Databricks](https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication)
+
+Make sure that module name that setups the databricks workspace in main.tf matches the "host = module.<Module_Name>.dbx_host" in the databricks.workspace provider in provider.tf
+
+**NOTE**: You cannot create multiple databricks workspaces with the same storage, credentials or network configurations.
+
+**NOTE**: The URL of the created databricks workspaces will be outputed on the finish of terraform apply run. Look for **dbx_host** in outputs for the URL

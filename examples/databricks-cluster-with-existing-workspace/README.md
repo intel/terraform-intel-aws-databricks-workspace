@@ -19,6 +19,9 @@ This module requires you to have Databricks workspace setup. As it will prompt f
 
 ## Usage
 
+```
+NOTE : This example assumes you have a pre-existing databricks workspace. User will need to provide the URL of their databricks workspace in order to add Intel Optimized Databricks Cluster to their pre-existing workspace
+```
 
 **See examples folder for complete examples.**
 
@@ -69,3 +72,7 @@ terraform apply -var="dbx_host=https://dbc-42d1aa5f-eadb.cloud.databricks.com/"
 ```
 ## Considerations
 More Information regarding deploying Databricks Workspace [Databricks](https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication)
+
+**NOTE**: You cannot create multiple databricks workspaces with the same storage, credentials or network configurations.
+
+**NOTE**: The URL of the created databricks workspaces will be outputed on the finish of terraform apply run. Look for **dbx_host** in outputs for the URL

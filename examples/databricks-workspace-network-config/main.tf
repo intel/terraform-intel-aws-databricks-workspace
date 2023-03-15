@@ -1,5 +1,5 @@
 #This example creates an databricks workspace with the default Credentials and Storage Configurations. 
-#This example creates VPC and VPC endpoints for the network config to use for the setup of the databricks workspace. 
+#This example creates VPC and VPC endpoints for the network config to be use for the setup of the databricks workspace. 
 #For more information on usage configuration, use the README.md
 locals {
   prefix = "Test-Network"
@@ -81,11 +81,8 @@ module "databricks_workspace" {
   dbx_account_id = var.dbx_account_id
   dbx_account_password = var.dbx_account_password
   dbx_account_username = var.dbx_account_username
-  bucket_name = "dbx-root-storage-bucket"
-  aws_cross_account_role_name = "dbx-cross-account-role"
-  aws_cross_account_arn = "arn:aws:iam::499974397304:role/dbx-cross-account-role"
   
-  #Network Configv
+  #Network Config
   vpc_id = module.vpc.vpc_id
   vpc_subnet_ids = module.vpc.private_subnets
   security_group_ids = [module.vpc.default_security_group_id]  

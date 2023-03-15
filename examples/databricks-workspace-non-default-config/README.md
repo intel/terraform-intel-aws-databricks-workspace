@@ -8,14 +8,13 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 **Learn more about optimizations :**
 
 [Databricks Photon using AWS i4i](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
 
 [Accelerating Databricks Runtime for Machine Learning](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273)
-
 ## Usage
 
 See examples folder for code ./examples/databricks-workspace/main.tf
@@ -55,21 +54,6 @@ All the examples in example folder shows how to create a databricks workspace us
   Checkout the **example/databricks-workspace-non-default-config/main.tf** to see an working example.<br/><br/>
 
 **NOTE: At this point you could run the TF init, plan, apply, but this will ONLY create databricks workspace. See examples/databricks-workspace. If you would like to add Intel Optimized Databricks Cluster finish Step 5.**<br/><br/>
-* **Step 5: Add the Databricks Cluster Module**: Just have to add this in your main.tf file
-```hcl
-module "databricks_cluster" {
-  source = "../../cluster"
-  providers = {
-    databricks = databricks.workspace
-  }
-  depends_on = [
-    module.<NAME_OF_MODULE_THAT_CREATES_DBX_WORKSPACE>
-  ]
-}
-```
-Checkout the **example/databricks-workspace-cluster/main.tf** to see an working example.<br/><br/>
-# 
-</p>
 
 **See examples folder for complete examples.**
 
@@ -105,9 +89,18 @@ variable "security_group_ids" {
   description = "List of security group IDs that will be utilized by Databricks."
 }
 ```
+
+``` 
+Since create_bucket = false and create_aws_account = false -> following variables are required:
+
+# var.bucket_name
+# var.aws_cross_account_role_name
+# var.aws_cross_account_role_arn
+```
 main.tf
 ```hcl
-#This example creates an databricks workspace with the default Credentials, Storage and Network Configurations and Databricks Cluster with Intel Optimizations. For more information on usage configuration, use the README.md
+#This example creates an databricks workspace with the default Credentials, Storage and Network Configurations. For more information on usage configuration, use the README.md
+#This example creates an databricks workspace with the non-default Credentials, Storage and Network Configurations (Steps 3 and 4 Included). For more information on usage configuration, use the README.md
 module "databricks_workspace" {
   source = "../../"
   vpc_id = "vpc-047043965cbe4967b"
@@ -116,18 +109,16 @@ module "databricks_workspace" {
   dbx_account_username = var.dbx_account_username
   vpc_subnet_ids = ["subnet-0b22c8e6b9f2e956c" , "subnet-0c53fc70a0e3ed9f0"]
   security_group_ids = ["sg-0c26302989e5391b5"]
-}
 
-module "databricks_cluster" {
-  source = "../../cluster"
-  providers = {
-    databricks = databricks.workspace
-  }
-  depends_on = [
-    module.databricks_workspace
-  ]
-}
+  ##Storage Config
+  create_bucket = false
+  bucket_name = "dbx-root-storage-bucket"
 
+  ##Credential Config
+  create_aws_account_role = false
+  aws_cross_account_role_name = "shreejan-dbx"
+  aws_cross_account_arn = "arn:aws:iam::499974397304:role/shreejan-dbx"
+}
 ```
 
 
