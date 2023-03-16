@@ -18,12 +18,12 @@ resource "aws_iam_policy" "iap" {
 }
 
 resource "aws_iam_policy_attachment" "ipa" {
-  name  = var.aws_iam_policy_attachment_name
-  roles = [var.prefix != null ? "${var.prefix}-${var.aws_cross_account_role_name}" : "${var.aws_cross_account_role_name}"]
+  name       = var.aws_iam_policy_attachment_name
+  roles      = [var.prefix != null ? "${var.prefix}-${var.aws_cross_account_role_name}" : "${var.aws_cross_account_role_name}"]
   policy_arn = aws_iam_policy.iap.arn
   lifecycle {
     precondition {
-      condition = (var.create_aws_account_role == false && var.aws_cross_account_role_name != "dbx_module_account_role" ) || var.create_aws_account_role == true
+      condition     = (var.create_aws_account_role == false && var.aws_cross_account_role_name != "dbx_module_account_role") || var.create_aws_account_role == true
       error_message = "If you are providing an AWS Cross Account Role please change \"var.aws_cross_account_role_name\" to your Role name."
     }
   }
@@ -39,13 +39,13 @@ resource "aws_iam_role" "ir" {
 }
 
 resource "databricks_mws_credentials" "cr" {
-  depends_on = [time_sleep.wait]
+  depends_on       = [time_sleep.wait]
   account_id       = var.dbx_account_id
   role_arn         = var.aws_cross_account_arn != "" ? var.aws_cross_account_arn : aws_iam_role.ir[0].arn
   credentials_name = var.prefix != null ? "${var.prefix}-${var.dbx_credential_name}" : var.dbx_credential_name
   lifecycle {
     precondition {
-      condition = (var.create_aws_account_role == false && var.aws_cross_account_arn != "" ) || var.create_aws_account_role == true
+      condition     = (var.create_aws_account_role == false && var.aws_cross_account_arn != "") || var.create_aws_account_role == true
       error_message = "If you are providing an AWS Cross Account Role please change \"var.aws_cross_account_arn\" to your Role ARN."
     }
   }
@@ -56,8 +56,8 @@ resource "databricks_mws_credentials" "cr" {
 // Create the S3 root bucket.
 // See https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest
 resource "aws_s3_bucket" "rsb" {
-  count = var.create_bucket ? 1 : 0
-  bucket = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
+  count         = var.create_bucket ? 1 : 0
+  bucket        = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
   force_destroy = var.s3_bucket_force_destroy
   tags = merge(var.tags, {
     Name = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
@@ -65,13 +65,13 @@ resource "aws_s3_bucket" "rsb" {
 }
 
 resource "aws_s3_bucket_acl" "ba" {
-  count = var.create_bucket ? 1 : 0
+  count  = var.create_bucket ? 1 : 0
   bucket = aws_s3_bucket.rsb[0].id
   acl    = var.s3_bucket_acl
 }
 
 resource "aws_s3_bucket_versioning" "sbv" {
-  count = var.create_bucket ? 1 : 0
+  count  = var.create_bucket ? 1 : 0
   bucket = aws_s3_bucket.rsb[0].id
   versioning_configuration {
     status = var.s3_bucket_versioning
@@ -84,7 +84,7 @@ data "databricks_aws_bucket_policy" "bp" {
   bucket = var.create_bucket ? aws_s3_bucket.rsb[0].bucket : var.bucket_name
   lifecycle {
     precondition {
-      condition = (var.create_bucket == false && var.bucket_name != "dbx-root-bucket") || var.create_bucket == true 
+      condition     = (var.create_bucket == false && var.bucket_name != "dbx-root-bucket") || var.create_bucket == true
       error_message = "If you are providing an S3 bucket please change \"var.bucket_name\" to a non-default value."
     }
   }
@@ -94,11 +94,11 @@ data "databricks_aws_bucket_policy" "bp" {
 // Attach the access policy to the S3 root bucket within your AWS account.
 // See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy
 resource "aws_s3_bucket_policy" "root_bucket_policy" {
-  bucket     = var.create_bucket ? aws_s3_bucket.rsb[0].id : var.bucket_name
-  policy     = data.databricks_aws_bucket_policy.bp.json
+  bucket = var.create_bucket ? aws_s3_bucket.rsb[0].id : var.bucket_name
+  policy = data.databricks_aws_bucket_policy.bp.json
   lifecycle {
     precondition {
-      condition = (var.create_bucket == false && var.bucket_name != "dbx-root-bucket") || var.create_bucket == true
+      condition     = (var.create_bucket == false && var.bucket_name != "dbx-root-bucket") || var.create_bucket == true
       error_message = "If you are providing an S3 bucket please change \"var.bucket_name\" to a non-default value."
     }
   }
@@ -114,7 +114,7 @@ resource "databricks_mws_storage_configurations" "sc" {
   storage_configuration_name = var.prefix != null ? "${var.prefix}-${var.dbx_storage_name}" : var.dbx_storage_name
   lifecycle {
     precondition {
-      condition = (var.create_bucket == false && var.bucket_name != "dbx-root-bucket") || var.create_bucket == true
+      condition     = (var.create_bucket == false && var.bucket_name != "dbx-root-bucket") || var.create_bucket == true
       error_message = "If you are providing an S3 bucket please change \"var.bucket_name\" to a non-default value."
     }
   }

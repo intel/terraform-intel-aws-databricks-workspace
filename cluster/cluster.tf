@@ -8,9 +8,10 @@ data "databricks_spark_version" "latest_lts" {
   long_term_support = true
 }
 
-resource "databricks_dbfs_file" "dbfs" {
-  source = var.dbfs_source
-  path   = "/FileStore/init_scripts"
+resource "databricks_global_init_script" "intel_optimized_script" {
+  source  = var.dbfs_source
+  name    = "Intel Optimized Init Script"
+  enabled = true
 }
 
 resource "databricks_cluster" "dbx_cluster" {
@@ -23,9 +24,9 @@ resource "databricks_cluster" "dbx_cluster" {
   spark_conf              = var.dbx_spark_config
   custom_tags             = var.tags
 
-  init_scripts {
+  cluster_log_conf {
     dbfs {
-      destination = databricks_dbfs_file.dbfs.dbfs_path
+      destination = "dbfs:/FileStore/logs"
     }
   }
 }

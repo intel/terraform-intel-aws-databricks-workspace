@@ -1,11 +1,11 @@
 variable "region" {
-  type = string
+  type        = string
   description = "AWS Region that will be used as a part of the deployment"
   default     = "us-east-2"
 }
 
 variable "dbx_account_password" {
-  type = string
+  type        = string
   description = "Account Login Password for the Databricks Account"
 }
 
@@ -15,7 +15,7 @@ variable "dbx_account_username" {
 }
 
 variable "dbx_account_id" {
-  type = string
+  type        = string
   description = "Account ID Number for the Databricks Account"
 }
 

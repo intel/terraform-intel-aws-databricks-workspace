@@ -73,18 +73,18 @@ module "vpc_endpoints" {
     },
   }
 
-  
+
 }
 
 module "databricks_workspace" {
-  source = "../../"
-  dbx_account_id = var.dbx_account_id
+  source               = "../../"
+  dbx_account_id       = var.dbx_account_id
   dbx_account_password = var.dbx_account_password
   dbx_account_username = var.dbx_account_username
-  
+
   #Network Config
-  vpc_id = module.vpc.vpc_id
-  vpc_subnet_ids = module.vpc.private_subnets
-  security_group_ids = [module.vpc.default_security_group_id]  
+  vpc_id             = module.vpc.vpc_id
+  vpc_subnet_ids     = module.vpc.private_subnets
+  security_group_ids = [module.vpc.default_security_group_id]
 
 }

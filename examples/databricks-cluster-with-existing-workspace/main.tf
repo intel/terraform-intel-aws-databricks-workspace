@@ -7,7 +7,7 @@ module "databricks_cluster" {
 
   #REMOVE THIS
   tags = {
-    "owner" = "shreejan.mistry@intel.com"
+    "owner"    = "shreejan.mistry@intel.com"
     "duration" = "4"
   }
 }
