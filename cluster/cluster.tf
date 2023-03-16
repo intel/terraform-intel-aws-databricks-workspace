@@ -10,9 +10,7 @@ data "databricks_spark_version" "latest_lts" {
 
 resource "databricks_dbfs_file" "dbfs" {
   source = var.dbfs_source
-  path   = "/FileStore/init_scripts/init_intel_optimized_ml_ex.sh"
-  overwrite = true
-  mkdirs = true
+  path   = "/FileStore/init_scripts"
 }
 
 resource "databricks_cluster" "dbx_cluster" {
