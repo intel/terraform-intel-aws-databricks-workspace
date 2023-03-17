@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/logo-classicblue-800px.png" alt="Intel Logo" width="250"/>
+  <img src="https://github.com/intel/terraform-intel-aws-databricks/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
 </p>
 
 # Intel® Cloud Optimization Modules for Terraform
@@ -199,7 +199,9 @@ More Information regarding deploying Databricks Workspace [Databricks](https://r
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_gis"></a> [gis](#module\_gis) | ./global_init_scripts | n/a |
 
 ## Resources
 
