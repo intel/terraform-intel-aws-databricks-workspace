@@ -199,7 +199,9 @@ More Information regarding deploying Databricks Workspace [Databricks](https://r
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_gis"></a> [gis](#module\_gis) | ./global_init_scripts | n/a |
 
 ## Resources
 
