@@ -30,16 +30,18 @@ All the examples in example folder shows how to create a databricks workspace us
 
   1.  [Create a databricks account.](https://www.databricks.com/try-databricks?itm_data=Homepage-HeroCTA-Trial#account). Remember the **email** and **password** used to create an Databricks account.
 
-  2.  After logging in the account, in the top right corner you can find your **Databricks Account ID**<br/><br/>
+  2.  After logging in the account, in the top right corner you can find your **Databricks Account ID**
 
-  3.  Create a terraform.tfvars file and fill in the details. 
+  3. Follow the steps here to [create VPC with subnets and security groups](https://docs.databricks.com/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#create-a-vpc) in your AWS Console.
+
+  4.  Create a terraform.tfvars file and fill in the details. 
 ```hcl
-
-dbx_account_id = <""> 
+dbx_account_id       = <""> 
 dbx_account_password = <"">
 dbx_account_username = <"">
-
-
+vpc_id               = <"">
+vpc_subnet_ids       = <["subnet-XXXX", "subnet-XXXXX"]>
+security_group_ids   = <["sg-XXXX"]>
 ```
 Run Terraform
 

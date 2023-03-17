@@ -19,3 +19,17 @@ variable "dbx_account_id" {
   description = "Account ID Number for the Databricks Account"
 }
 
+variable "vpc_id" {
+  type = string
+  description = "ID for the VPC that Databricks will be attaching to."
+}
+
+variable "vpc_subnet_ids" {
+  type = set(string)
+  description = "List of subnet IDs that will be utilized by Databricks."
+}
+
+variable "security_group_ids" {
+  type = set(string)
+  description = "List of security group IDs that will be utilized by Databricks."
+}

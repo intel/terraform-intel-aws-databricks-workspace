@@ -5,10 +5,8 @@ module "databricks_cluster" {
     databricks = databricks.workspace
   }
 
-  #REMOVE THIS
   tags = {
-    "owner"    = "shreejan.mistry@intel.com"
-    "duration" = "4"
+    "owner"    = "user@example.com"
+    "module"   = "Intel-Cloud-Optimization-Module"
   }
 }
-
