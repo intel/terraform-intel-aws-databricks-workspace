@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/OTCShare2/terraform-intel-hashicorp/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
+  <img src="https://github.com/intel/terraform-intel-aws-databricks/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
 </p>
 
 # Intel Cloud Optimization Modules for Terraform
@@ -94,7 +94,7 @@ main.tf
 ```hcl
 #This example creates an databricks workspace with the default Credentials, Storage and Network Configurations and Multiple Databricks Cluster with Intel Optimizations. For more information on usage configuration, use the README.md
 module "databricks_workspace" {
-  source = "../../"
+  source = "intel/aws-databricks/intel"
   vpc_id = "vpc-047043965cbe4967b"
   dbx_account_id = var.dbx_account_id
   dbx_account_password = var.dbx_account_password

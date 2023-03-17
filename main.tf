@@ -151,6 +151,13 @@ resource "databricks_mws_workspaces" "ws" {
   network_id               = databricks_mws_networks.nw.network_id
 }
 
+################ Global Init Script ###########################
+module "gis" {
+  source = "./global_init_scripts"
+  providers = {
+    databricks = databricks.workspace
+  }
+}
 #### END
 
 

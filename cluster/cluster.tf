@@ -8,12 +8,6 @@ data "databricks_spark_version" "latest_lts" {
   long_term_support = true
 }
 
-resource "databricks_global_init_script" "intel_optimized_script" {
-  source  = var.dbfs_source
-  name    = "Intel Optimized Init Script"
-  enabled = true
-}
-
 resource "databricks_cluster" "dbx_cluster" {
   cluster_name            = var.dbx_cluster_name
   spark_version           = data.databricks_spark_version.latest_lts.id

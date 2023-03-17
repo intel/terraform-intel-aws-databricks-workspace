@@ -77,7 +77,7 @@ module "vpc_endpoints" {
 }
 
 module "databricks_workspace" {
-  source               = "../../"
+  source               = "intel/aws-databricks/intel"
   dbx_account_id       = var.dbx_account_id
   dbx_account_password = var.dbx_account_password
   dbx_account_username = var.dbx_account_username

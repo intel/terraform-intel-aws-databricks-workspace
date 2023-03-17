@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/OTCShare2/terraform-intel-hashicorp/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
+  <img src="https://github.com/intel/terraform-intel-aws-databricks/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
 </p>
 
 # Intel Cloud Optimization Modules for Terraform
@@ -99,7 +99,7 @@ module "vpc_endpoints" {
 }
 
 module "databricks_workspace" {
-  source = "../../"
+  source = "intel/aws-databricks/intel"
   dbx_account_id = var.dbx_account_id
   dbx_account_password = var.dbx_account_password
   dbx_account_username = var.dbx_account_username
