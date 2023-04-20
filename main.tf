@@ -59,16 +59,12 @@ resource "aws_s3_bucket" "rsb" {
   count         = var.create_bucket ? 1 : 0
   bucket        = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
   force_destroy = var.s3_bucket_force_destroy
+  acl           = var.s3_bucket_acl
   tags = merge(var.tags, {
     Name = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
   })
 }
 
-resource "aws_s3_bucket_acl" "ba" {
-  count  = var.create_bucket ? 1 : 0
-  bucket = aws_s3_bucket.rsb[0].id
-  acl    = var.s3_bucket_acl
-}
 
 resource "aws_s3_bucket_versioning" "sbv" {
   count  = var.create_bucket ? 1 : 0
@@ -152,11 +148,20 @@ resource "databricks_mws_workspaces" "ws" {
 }
 
 ################ Global Init Script ###########################
-module "gis" {
-  source = "./global_init_scripts"
-  providers = {
-    databricks = databricks.workspace
-  }
+resource "databricks_global_init_script" "intel_optimized_script" {
+  name    = "Intel Optimized ML-AI Init Script"
+  enabled = true
+  content_base64 = base64encode(<<-EOT
+    #!/bin/bash
+    pip install --upgrade pip
+    pip install intel-tensorflow==2.11.0
+    pip install scikit-learn-intelex
+    EOT
+  )
+  provider = databricks.workspace
+  depends_on = [
+    databricks_mws_workspaces.ws
+  ]
 }
 #### END
 
