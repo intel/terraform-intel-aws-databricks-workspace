@@ -68,14 +68,13 @@ More Information regarding deploying Databricks Workspace [Databricks](https://r
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.15.0 |
 | <a name="provider_databricks"></a> [databricks](#provider\_databricks) | ~> 1.9.2 |
+| <a name="provider_databricks.workspace"></a> [databricks.workspace](#provider\_databricks.workspace) | ~> 1.9.2 |
 | <a name="provider_random"></a> [random](#provider\_random) | ~> 3.4.3 |
 | <a name="provider_time"></a> [time](#provider\_time) | ~> 0.9.1 |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_gis"></a> [gis](#module\_gis) | ./global_init_scripts | n/a |
+No modules.
 
 ## Resources
 
@@ -85,9 +84,9 @@ More Information regarding deploying Databricks Workspace [Databricks](https://r
 | [aws_iam_policy_attachment.ipa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment) | resource |
 | [aws_iam_role.ir](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_s3_bucket.rsb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_acl.ba](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
 | [aws_s3_bucket_policy.root_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_s3_bucket_versioning.sbv](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
+| [databricks_global_init_script.intel_optimized_script](https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/global_init_script) | resource |
 | [databricks_mws_credentials.cr](https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/mws_credentials) | resource |
 | [databricks_mws_networks.nw](https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/mws_networks) | resource |
 | [databricks_mws_storage_configurations.sc](https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/mws_storage_configurations) | resource |
