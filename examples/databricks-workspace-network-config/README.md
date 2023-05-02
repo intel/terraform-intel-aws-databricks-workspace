@@ -8,7 +8,7 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 **Learn more about optimizations :**
 
@@ -20,7 +20,8 @@ The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. I
 
 See examples folder for code ./examples/databricks-workspace/main.tf
 
-All the examples in example folder shows how to create a databricks workspace using this module. Additionally, some of the examples display how to create a databricks cluster with the workspace using this module.
+All the examples in example folder shows how to create a databricks workspace using this module.
+
 
 **Usage Considerations**
 
@@ -35,11 +36,11 @@ All the examples in example folder shows how to create a databricks workspace us
   3.  See **examples/databricks-workspace-network-config/main.tf** to see how you can create your VPC with subnets and security group using Terraform and then use that VPC for the creation of the databricks workspace.
 
   4.  Create a terraform.tfvars file and fill in the details. 
-```hcl
-dbx_account_id       = <""> 
-dbx_account_password = <"">
-dbx_account_username = <"">
-```
+      ```hcl
+      dbx_account_id       = <""> 
+      dbx_account_password = <"">
+      dbx_account_username = <"">
+      ```
 Run Terraform
 
 ```hcl

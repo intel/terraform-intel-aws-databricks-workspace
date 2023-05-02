@@ -8,7 +8,7 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 **Learn more about optimizations :**
 
@@ -18,9 +18,7 @@ The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. I
 
 ## Usage
 
-See examples folder for code ./examples/databricks-workspace/main.tf
-
-All the examples in example folder shows how to create a databricks workspace using this module. Additionally, some of the examples display how to create a databricks cluster with the workspace using this module.
+This example showcases how to uses the [Intel Databricks Cluster](https://registry.terraform.io/modules/intel/databricks-cluster/intel/latest) with the given Intel AWS Databricks Workspace Module.
 
 **Usage Considerations**
 
@@ -32,17 +30,20 @@ All the examples in example folder shows how to create a databricks workspace us
 
   2.  After logging in the account, in the top right corner you can find your **Databricks Account ID**
 
-  3. Follow the steps here to [create VPC with subnets and security groups](https://docs.databricks.com/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#create-a-vpc) in your AWS Console.
+  3.  Follow the steps here to [create VPC with subnets and security groups](https://docs.databricks.com/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#create-a-vpc) in your AWS Console.
 
-  4.  Create a terraform.tfvars file and fill in the details. 
-```hcl
-dbx_account_id       = <""> 
-dbx_account_password = <"">
-dbx_account_username = <"">
-vpc_id               = <"">
-vpc_subnet_ids       = <["subnet-XXXX", "subnet-XXXXX"]>
-security_group_ids   = <["sg-XXXX"]>
-```
+  4.  Configure the **providers.tf** like shown in this example. It is important to configure both providers as Databricks Workspace and Cluster use seperate providers to deploy resources.
+
+  5.  Create a terraform.tfvars file and fill in the details. 
+
+      ```hcl
+      dbx_account_id       = <"ENTER YOUR DATABRICKS ACCT ID NUMBER"> 
+      dbx_account_password = <"ENTER YOUR DATABRICKS ACCT PASSWORD">
+      dbx_account_username = <"ENTER YOUR DATABRICKS ACCT USERNAME">
+      vpc_id               = <"vpc-XXXXXX-XXX">
+      vpc_subnet_ids       = <["subnet-XXXX", "subnet-XXXXX"]>
+      security_group_ids   = <["sg-XXXX"]>
+      ```
 Run Terraform
 
 ```hcl
