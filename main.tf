@@ -158,9 +158,6 @@ resource "databricks_global_init_script" "intel_optimized_script" {
     pip install scikit-learn-intelex
     EOT
   )
-  /* depends_on = [
-    databricks_mws_workspaces.ws
-  ] */
   provider = databricks.workspace
 }
 #### END

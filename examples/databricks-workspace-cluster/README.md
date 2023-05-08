@@ -6,9 +6,9 @@
 
 © Copyright 2022, Intel Corporation
 
-## AWS Databricks
+## Intel Optimized Databricks Cluster
 
-The module can deploy an Intel Optimized AWS Databricks Workspace.
+The module can deploy an Intel Optimized AWS Databricks Worskpace. 
 
 **Learn more about optimizations :**
 
@@ -18,7 +18,7 @@ The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 ## Usage
 
-This example showcases how to uses the [Intel Databricks Cluster](https://registry.terraform.io/modules/intel/databricks-cluster/intel/latest) with the given Intel AWS Databricks Workspace Module.
+This example showcases how to uses the [Intel Optimized Databricks Cluster ](https://registry.terraform.io/modules/intel/databricks-cluster/intel/latest) with the given Intel AWS Databricks Workspace Module.
 
 **Usage Considerations**
 
@@ -32,11 +32,14 @@ This example showcases how to uses the [Intel Databricks Cluster](https://regist
 
   3.  Follow the steps here to [create VPC with subnets and security groups](https://docs.databricks.com/administration-guide/cloud-configurations/aws/customer-managed-vpc.html#create-a-vpc) in your AWS Console.
 
-  4.  Configure the **providers.tf** like shown in this example. It is important to configure both providers as Databricks Workspace and Cluster use seperate providers to deploy resources.
+  4.  Configure the **providers.tf** like shown in this example. It is important to configure both providers as Databricks Workspace and Cluster use seperate providers to deploy resources. Also see how to use the **databricks.cluster** provider for the Databricks Cluster module in example/main.tf
+
+  5.  See the main.tf in the example on how to pass the value for dbx_host (i.e. the URL of the databricks workspace) in the Databricks Cluster Module 
 
   5.  Create a terraform.tfvars file and fill in the details. 
 
       ```hcl
+      dbx_cloud            = "aws"
       dbx_account_id       = <"ENTER YOUR DATABRICKS ACCT ID NUMBER"> 
       dbx_account_password = <"ENTER YOUR DATABRICKS ACCT PASSWORD">
       dbx_account_username = <"ENTER YOUR DATABRICKS ACCT USERNAME">
