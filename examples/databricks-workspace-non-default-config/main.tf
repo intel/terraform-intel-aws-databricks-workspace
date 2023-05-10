@@ -1,6 +1,6 @@
 #This example creates an databricks workspace with the non-default Credentials, Storage and Network Configurations (Steps 3 and 4 Included). For more information on usage configuration, use the README.md
 module "databricks_workspace" {
-  source               = "intel/aws-databricks/intel"
+  source               = "intel/aws-databricks-workspace/intel"
   vpc_id               = var.vpc_id
   dbx_account_id       = var.dbx_account_id
   dbx_account_password = var.dbx_account_password

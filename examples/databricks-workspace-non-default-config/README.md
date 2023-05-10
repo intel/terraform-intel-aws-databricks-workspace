@@ -37,14 +37,14 @@ All the examples in example folder shows how to create a databricks workspace us
   4. Checkout the **example/databricks-workspace-non-default-config/main.tf** to see an working example on how to use pre-existing **S3 storage bucket** and **IAM Cross Account Role** in your AWS account. For more information on creating bucket and role see USAGE.md
 
   5.  Create a terraform.tfvars file and fill in the details. 
-```hcl
-dbx_account_id       = <""> 
-dbx_account_password = <"">
-dbx_account_username = <"">
-vpc_id               = <"">
-vpc_subnet_ids       = <["subnet-XXXX", "subnet-XXXXX"]>
-security_group_ids   = <["sg-XXXX"]>
-```
+      ```hcl
+      dbx_account_id       = <""> 
+      dbx_account_password = <"">
+      dbx_account_username = <"">
+      vpc_id               = <"">
+      vpc_subnet_ids       = <["subnet-XXXX", "subnet-XXXXX"]>
+      security_group_ids   = <["sg-XXXX"]>
+      ```
 Run Terraform
 
 ```hcl

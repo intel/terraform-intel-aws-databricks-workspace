@@ -8,7 +8,7 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 **Learn more about optimizations :**
 
@@ -20,7 +20,7 @@ The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. I
 
 See examples folder for code ./examples/databricks-workspace/main.tf
 
-All the examples in example folder shows how to create a databricks workspace using this module. Additionally, some of the examples display how to create a databricks cluster with the workspace using this module.
+All the examples in example folder shows how to create a databricks workspace using this module.
 
 **Usage Considerations**
 
