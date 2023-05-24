@@ -8,13 +8,42 @@
 
 ## AWS Databricks
 
-The module can deploy an Intel Optimized AWS Databricks Workspace and Cluster. Instance Selection and Intel Optimizations have been defaulted in the code.
+The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 **Learn more about optimizations :**
+## Performance Data
 
-[Databricks Photon using AWS i4i](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
+<center>
 
-[Accelerating Databricks Runtime for Machine Learning](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273)
+#### [Faster insights With Databricks Photon Using AWS i4i Instances With the Latest Intel Ice Lake Scalable Processors](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
+
+<p align="center">
+  <a href="https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake">
+  <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/aws-dbx-1.png" alt="Link" width="600"/>
+  </a>
+</p>
+
+#
+#### [5.3x relative speed up of i4i Photon against the i3 DBR](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
+
+<p align="center">
+  <a href="https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake">
+  <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/aws-dbx-2.png?raw=true" alt="Link" width="600"/>
+  </a>
+</p>
+
+#
+#### [Accelerating Azure Databricks Runtime for Machine Learning](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273)
+
+<p align="center">
+  <a href="https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/accelerating-azure-databricks-runtime-for-machine-learning/ba-p/3524273">
+  <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/dbx-runtime.png?raw=true" alt="Link" width="600"/>
+  </a>
+</p>
+
+#
+
+</center>
 
 ## Usage
 
@@ -115,6 +144,8 @@ No modules.
 | <a name="input_dbx_network_name"></a> [dbx\_network\_name](#input\_dbx\_network\_name) | Name that will be associated with the network configuration in Databricks. | `string` | `"dbx_module_network"` | no |
 | <a name="input_dbx_storage_name"></a> [dbx\_storage\_name](#input\_dbx\_storage\_name) | Name that will be associated with the storage configuration that will be created in Databricks. | `string` | `"dbx_module_storage"` | no |
 | <a name="input_dbx_workspace_name"></a> [dbx\_workspace\_name](#input\_dbx\_workspace\_name) | Name that will be associated with the workspace that will be created in Databricks. | `string` | `"dbx_module_workspace"` | no |
+| <a name="input_enable_intel_tags"></a> [enable\_intel\_tags](#input\_enable\_intel\_tags) | If true adds additional Intel tags to resources | `bool` | `true` | no |
+| <a name="input_intel_tags"></a> [intel\_tags](#input\_intel\_tags) | Intel Tags | `map(string)` | <pre>{<br>  "intel-module": "terraform-intel-aws-databricks-workspace",<br>  "intel-registry": "https://registry.terraform.io/namespaces/intel"<br>}</pre> | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix that will be added to all resources that are created | `string` | `null` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region that will be used as a part of the deployment | `string` | `"us-east-2"` | no |
 | <a name="input_s3_bucket_acl"></a> [s3\_bucket\_acl](#input\_s3\_bucket\_acl) | ACL that will be attached to the S3 bucket (if created) during the provisioning process. | `string` | `"private"` | no |

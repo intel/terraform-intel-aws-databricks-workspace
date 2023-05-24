@@ -57,6 +57,21 @@ variable "tags" {
   default     = {}
 }
 
+variable "enable_intel_tags" {
+  type    = bool
+    default = true
+  description = "If true adds additional Intel tags to resources"
+}
+
+variable "intel_tags" {
+  default     = {
+    intel-registry = "https://registry.terraform.io/namespaces/intel"
+    intel-module   = "terraform-intel-aws-databricks-workspace"
+  }
+  type        = map(string)
+  description = "Intel Tags"
+}
+
 variable "region" {
   type        = string
   description = "AWS Region that will be used as a part of the deployment"

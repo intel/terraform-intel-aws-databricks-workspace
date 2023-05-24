@@ -4,6 +4,12 @@ resource "random_string" "naming" {
   length  = 6
 }
 
+locals {
+
+  #If the enable_intel_tags is true, then additional Intel tags will be added to the resources created
+  tags = var.enable_intel_tags ? merge(var.intel_tags, var.tags) : var.tags
+}
+
 ############################## Credentials Config ###################################
 
 data "databricks_aws_assume_role_policy" "rp" {
@@ -35,7 +41,7 @@ resource "aws_iam_role" "ir" {
   count              = var.create_aws_account_role ? 1 : 0
   name               = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.aws_cross_account_role_name}" : "${var.aws_cross_account_role_name}"
   assume_role_policy = data.databricks_aws_assume_role_policy.rp.json
-  tags               = var.tags
+  tags               = local.tags
 }
 
 resource "databricks_mws_credentials" "cr" {
@@ -60,7 +66,7 @@ resource "aws_s3_bucket" "rsb" {
   bucket        = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
   force_destroy = var.s3_bucket_force_destroy
   acl           = var.s3_bucket_acl
-  tags = merge(var.tags, {
+  tags = merge(local.tags, {
     Name = var.prefix != null ? "${var.prefix}-${random_string.naming.result}-${var.bucket_name}" : "${random_string.naming.result}-${var.bucket_name}"
   })
 }
