@@ -19,7 +19,7 @@ The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 <p align="center">
   <a href="https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake">
-  <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/aws-dbx-1.png" alt="Link" width="600"/>
+  <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/aws-dbx-1.png?raw=true" alt="Link" width="600"/>
   </a>
 </p>
 
