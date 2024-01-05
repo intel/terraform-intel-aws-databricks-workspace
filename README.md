@@ -15,19 +15,19 @@ The module can deploy an Intel Optimized AWS Databricks Workspace.
 
 <center>
 
-#### [Faster insights With Databricks Photon Using AWS i4i Instances With the Latest Intel Ice Lake Scalable Processors](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
+#### [Faster insights With Databricks Photon Using AWS i4i Instances With the Latest Intel Ice Lake Scalable Processors](https://www.databricks.com/blog/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake-scalable)
 
 <p align="center">
-  <a href="https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake">
+  <a href="https://www.databricks.com/blog/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake-scalable">
   <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/aws-dbx-1.png?raw=true" alt="Link" width="600"/>
   </a>
 </p>
 
 #
-#### [5.3x relative speed up of i4i Photon against the i3 DBR](https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake)
+#### [5.3x relative speed up of i4i Photon against the i3 DBR](https://www.databricks.com/blog/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake-scalable)
 
 <p align="center">
-  <a href="https://www.databricks.com/blog/2022/09/13/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake">
+  <a href="https://www.databricks.com/blog/faster-insights-databricks-photon-using-aws-i4i-instances-latest-intel-ice-lake-scalable">
   <img src="https://github.com/intel/terraform-intel-aws-databricks-workspace/blob/main/images/aws-dbx-2.png?raw=true" alt="Link" width="600"/>
   </a>
 </p>
