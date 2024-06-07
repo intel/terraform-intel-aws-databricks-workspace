@@ -60,7 +60,7 @@ output "dbx_bucket_name" {
   value       = databricks_mws_storage_configurations.sc.bucket_name
 }
 
-output "dbx_storage_configuration_name" {
+output "dbx_s3_storage_configuration_name" {
   description = "Name of the existing S3 bucket that Databricks will consume."
   value       = databricks_mws_storage_configurations.sc.storage_configuration_name
 }
