@@ -1,14 +1,16 @@
 name: Generate terraform docs
-permissions:
-  actions: write
-  contents: write
-  pull-requests: write
-  issues: write
+permissions: read-all
+  
 on:
   - pull_request
 
 jobs:
   docs:
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      issues: write
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
