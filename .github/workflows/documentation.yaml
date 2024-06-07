@@ -1,7 +1,7 @@
 name: Generate terraform docs
 permissions:
   actions: write
-  contents: read
+  contents: write
   pull-requests: write
   issues: write
 on:
