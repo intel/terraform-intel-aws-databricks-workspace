@@ -160,6 +160,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_dbx__s3_storage_configuration_name"></a> [dbx\_\_s3\_storage\_configuration\_name](#output\_dbx\_\_s3\_storage\_configuration\_name) | Name of the existing S3 bucket that Databricks will consume. |
 | <a name="output_dbx_account_id"></a> [dbx\_account\_id](#output\_dbx\_account\_id) | Account ID for the Databricks Account |
 | <a name="output_dbx_bucket_name"></a> [dbx\_bucket\_name](#output\_dbx\_bucket\_name) | Name of the existing S3 bucket that Databricks will consume. |
 | <a name="output_dbx_create_bucket"></a> [dbx\_create\_bucket](#output\_dbx\_create\_bucket) | Flag to create AWS S3 bucket or not. |
@@ -170,7 +171,6 @@ No modules.
 | <a name="output_dbx_network_name"></a> [dbx\_network\_name](#output\_dbx\_network\_name) | Name that will be associated with the network configuration in Databricks. |
 | <a name="output_dbx_role_arn"></a> [dbx\_role\_arn](#output\_dbx\_role\_arn) | ARN that will be used for databricks cross account IAM role. |
 | <a name="output_dbx_security_group_ids"></a> [dbx\_security\_group\_ids](#output\_dbx\_security\_group\_ids) | List of security group IDs that will be utilized by Databricks. |
-| <a name="output_dbx_storage_configuration_name"></a> [dbx\_storage\_configuration\_name](#output\_dbx\_storage\_configuration\_name) | Name of the existing S3 bucket that Databricks will consume. |
 | <a name="output_dbx_vpc_id"></a> [dbx\_vpc\_id](#output\_dbx\_vpc\_id) | ID for the VPC that Databricks will be attaching to. |
 | <a name="output_dbx_vpc_subnet_ids"></a> [dbx\_vpc\_subnet\_ids](#output\_dbx\_vpc\_subnet\_ids) | List of subnet IDs that will be utilized by Databricks. |
 <!-- END_TF_DOCS -->
